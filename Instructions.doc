@@ -17,28 +17,3 @@ yellow - #FFBF00
 green - #238823
 
 <div class='absolute top-4 right-6' onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>')">
-
-<?php
-                $query = "SELECT * FROM products";
-                $result = mysqli_query($connection, $query);
-                if (mysqli_num_rows($result) > 0) {
-                  // Loop through each product and display it in a card
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $productName = $row['name'];
-                    $productPrice = $row['price'];
-                    $productImage = $row['imageurl'];
-
-                    // Display the product in a card
-                    echo "
-                    <div class='card'>
-                      <img src='$productImage' alt='$productName' class='card-image'>
-                      <div class='card-content'>
-                        <h2 class='card-title'>$productName</h2>
-                        <p class='card-price'>$productPrice</p>
-                      </div>
-                    </div>";
-                  }
-                } else {
-                  echo "Oops.....No products found.";
-                }
-                ?>
