@@ -15,5 +15,3 @@ Color palette:
 red - #D2222D
 yellow - #FFBF00
 green - #238823
-
-<div class='absolute top-4 right-6' onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>')">
