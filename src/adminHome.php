@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="light" lang="en">
+<html data-theme="light" lang="en" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,27 +22,50 @@
       }
     </script>
 </head>
-<body>
+<body class="bg-yellowPrimary">
     <header>
       <nav class="h-24 px-60 flex justify-between items-center">
-        <div>
-          <h1 class="text-lg font-semibold">Welcome to admin dashboard</h1>
-        </div>
         <div class="flex items-center">
           <img class="h-16 w-16" src="../ICON/logo.png" alt="">
-          <h1 class="text-2xl font-bold ml-3">FreshBasket</h1>
+          <h1 class="text-3xl font-bold ml-3">FreshBasket</h1>
         </div>  
-        <div class="flex items-center">
-          <div class="flex items-center hover:text-redSecondary">
-            <i class="fa-regular fa-clipboard mr-2 text-lg"></i>
-            <a class="text-lg font-semibold uppercase">Published Items</a>
-          </div>
-          <div class="flex items-center ml-5 hover:text-redSecondary">
-            <i class="fa-solid fa-hourglass-end mr-2"></i>
-            <a class="text-lg font-semibold uppercase">Pending Items</a>
-          </div>
+        <?php
+            if(isset($_COOKIE['userID'])) {
+                $username = $_COOKIE['username'];
+            } else {
+                echo "No username cookie set";
+            }
+            ?>
+        <div>
+          <h1 class="text-2xl font-semibold uppercase">Welcome to admin dashboard, <?php echo $username ?></h1>
         </div>
       </nav>
     </header>
+    <main>
+      <section class="pl-60 pt-7 h-screen">
+        <div class="grid grid-cols-5">
+          <div class="mt-16">
+            <div class="flex flex-col items-start">
+              <div class="flex items-center hover:text-redSecondary mb-6">
+                <i class="fa-regular fa-clipboard mr-2 text-lg"></i>
+                <a class="text-lg font-semibold uppercase">Published Items</a>
+              </div>
+              <div class="flex items-center hover:text-redSecondary">
+                <i class="fa-solid fa-hourglass-end mr-2"></i>
+                <a class="text-lg font-semibold uppercase">Pending Items</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-4 bg-white rounded-tl-3xl h-screen pl-12 pt-12">
+            <div>
+              <h1>Total revenue</h1>
+              <h1>Current salary of admins</h1>
+              <h1>total customer</h1>
+              <h1>total sellers</h1>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 </body>
 </html>

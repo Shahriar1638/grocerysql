@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="light" lang="en">
+<html data-theme="light" lang="en"  style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,13 +61,13 @@
     </header>
     <main>
       <section class="h-80">
-        <div class="bg-cover bg-center h-96" style="background-image: linear-gradient(to bottom right,rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2)),url(../ICON/banner.jpg);">
+        <div class="bg-cover bg-center h-[30rem]" style="background-image: linear-gradient(to bottom right,rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2)),url(../ICON/banner.jpg);">
           <h1 class="text-7xl font-bold text-center py-10 text-white">Welcome to FreshBasket</h1>
           <p class="text-center text-white text-lg">Your one stop shop for all your grocery needs</p>
         </div>
       </section>
       <section>
-        <div class="my-40 px-60">
+        <div class="my-56 px-60">
           <h1 class="my-16 text-5xl font-extrabold text-center"><i class="fa-solid fa-chart-line text-5xl mr-4"></i>Top selling products</h1>
           <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" space-between="30" slides-per-view="3">
           <?php
