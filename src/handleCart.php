@@ -22,7 +22,7 @@ if (isset($_POST['productname']) && isset($_POST['productprice']) && isset($_POS
             }
         // Else we add them to the cart
         } else {
-            $sql = "INSERT INTO carts (customeremail, productid, productname, price, quantity) VALUES ('$customeremail', '$productid', '$productName', '$productPrice', '$productamount')";
+            $sql = "INSERT INTO carts (customeremail, productid, productname, price, productamount) VALUES ('$customeremail', '$productid', '$productName', '$productPrice', '$productamount')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
                 header("Location: allItems.php");

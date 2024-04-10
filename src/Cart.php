@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="light" lang="en"  style="scroll-behavior: smooth;">
+<html data-theme="light" lang="en" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,22 +60,22 @@
       </nav>
     </header>
     <main>
-        <section class="px-[15rem]">
-            <h1 class="text-center text-7xl font-extrabold my-10">
-                Confirm your order
-            </h1>
-            <div class='overflow-x-auto'>
-                            <table class='table'>
-                                <thead>
-                                    <tr>
-                                        <th>Product Name</th>
-                                        <th>Product Price</th>
-                                        <th>Product Quantity</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-            <?php 
+      <section class="px-[15rem]">
+        <h1 class="text-center text-7xl font-extrabold my-10">
+            Confirm your order
+        </h1>
+        <div class='overflow-x-auto'>
+          <table class='table'>
+              <thead>
+                  <tr>
+                      <th>Product Name</th>
+                      <th>Product Price</th>
+                      <th>Product Quantity</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+              <?php 
                 require_once('DBconnect.php');
                 $useremail = $_COOKIE['email'];
                 $query = "SELECT * FROM carts WHERE customeremail = '$useremail'";
@@ -86,19 +86,30 @@
                         $productid = $row['productId'];
                         $productname = $row['productname'];
                         $productprice = $row['price'];
-                        $productquantity = $row['quantity'];
+                        $productquantity = $row['productamount'];
                         $totalCost = ($productprice * $productquantity)+$totalCost;
-                        echo "
+                        // checking the product amount type
+                        $sql = "SELECT * FROM products WHERE productId = '$productid'";
+                        $productResult = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_assoc($productResult);
+                        $productMeasurementUnits = explode(",",$row['ammount']);
+                        if($productMeasurementUnits[0] == 'wp') {
+                          $unit= 'Pounds';
+                        } else if ($productMeasurementUnits[0] == 'wk') {
+                          $unit= 'Kg';
+                        } else if ($productMeasurementUnits[0] == 'p') {
+                          $unit= 'Pieces';
+                        }
+                        ?>
                             <tr>
-                                <td>$productname</td>
-                                <td>$productprice</td>
-                                <td>$productquantity</td>
-                                <td onclick=\"handleForm('$useremail','$productid')\"><i class='fa-solid fa-trash hover:text-red-500 cursor-pointer'></i></td>
+                              <td><?php echo $productname; ?></td>
+                              <td><?php echo $productprice; ?>$</td>
+                              <td class="uppercase"><?php echo $productquantity .' '. $unit; ?></td>
+                              <td onclick="handleForm('<?php echo $useremail; ?>','<?php echo $productid; ?>')"><i class='fa-solid fa-trash hover:text-red-500 cursor-pointer'></i></td>
                             </tr>
-                        ";
-                    }
-                }
-            ?>
+                  <?php
+                        }
+                  }?>
                 </tbody>
             </table>
         </div>

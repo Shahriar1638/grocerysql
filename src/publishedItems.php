@@ -60,28 +60,45 @@
               </div>
             </div>
           </div>
-          <?php
-            require_once('DBconnect.php');
-            $query = "SELECT COUNT(*) AS customer_count FROM users WHERE role = 'customer'";
-            $result = mysqli_query($conn, $query);
-            $row = mysqli_fetch_assoc($result);
-            $customer_count = $row['customer_count'];
-            $query = "SELECT COUNT(*) AS seller_count FROM users WHERE role = 'seller'";
-            $result = mysqli_query($conn, $query);
-            $row = mysqli_fetch_assoc($result);
-            $seller_count = $row['seller_count'];
-            // change the code below after updating the disjoint table;
-            $query = "SELECT SUM(points) AS total_salary FROM users WHERE role = 'admin'";
-            $result = mysqli_query($conn, $query);
-            $row = mysqli_fetch_assoc($result);
-            $total_salary = $row['total_salary'];
-          ?>
           <div class="col-span-5 bg-white rounded-tl-3xl h-screen pl-12 pt-12">
             <div>
-              <h1>Total revenue <?php echo $total_salary ?></h1>
-              <h1>Current salary of admins <?php echo $total_salary ?></h1>
-              <h1>total customer <?php echo $customer_count ?></h1>
-              <h1>total sellers <?php echo $seller_count ?></h1>
+              <h1 class="text-4xl font-bold uppercase text-center mb-8">Current published products</h1>
+            </div>
+            <div class='overflow-x-auto'>
+              <table class='table'>
+                  <thead>
+                      <tr>
+                          <th class="uppercase">Product Name</th>
+                          <th class="uppercase">Product Price</th>
+                          <th class="uppercase">sellername</th>
+                          <th class="uppercase">total sold</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  <?php 
+                    require_once('DBconnect.php');
+                    $useremail = $_COOKIE['email'];
+                    $query = "SELECT * FROM products where status = 'published'";
+                    $result = mysqli_query($conn, $query);
+                    $totalCost = 0;
+                    if (mysqli_num_rows($result) > 0){
+                        while ($row = mysqli_fetch_assoc($result)){
+                            $productname = $row['name'];
+                            $productprice = $row['price'];
+                            $productseller = $row['selleremail'];
+                            $productSellCount = $row['sellcount'];
+                            ?>
+                              <tr>
+                                <td><?php echo $productname ?></td>
+                                <td><?php echo $productprice ?></td>
+                                <td><?php echo $productseller ?></td>
+                                <td><?php echo $productSellCount ?></td>
+                              </tr>
+                    <?php
+                          }
+                    }?>
+                  </tbody>
+              </table>
             </div>
           </div>
         </div>
