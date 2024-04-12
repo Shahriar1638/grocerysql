@@ -24,7 +24,7 @@
 </head>
 <body class="bg-yellowPrimary">
     <header>
-      <nav class="h-24 px-60 flex justify-between items-center">
+      <nav class="h-24 px-40 flex justify-between items-center">
         <div class="flex items-center">
           <img class="h-16 w-16" src="../ICON/logo.png" alt="">
           <h1 class="text-3xl font-bold ml-3">FreshBasket</h1>
@@ -42,7 +42,7 @@
       </nav>
     </header>
     <main>
-      <section class="pl-60 pt-4 h-screen">
+      <section class="pl-40 pt-4 h-screen">
         <div class="grid grid-cols-6">
           <div class="mt-16">
             <div class="flex flex-col items-start">

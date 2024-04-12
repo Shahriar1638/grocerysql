@@ -21,13 +21,13 @@
       }
     </script>
 </head>
-<body>
+<body style="background-image: url(../ICON/theloginnsignupbg.jpeg);">
     <section class="h-screen justify-center items-center flex mx-[15rem] -z-50">
-      <div class="grid grid-cols-2 gap-8 z-50 bg-white w-full h-[45rem] rounded-xl shadow-2xl border border-solid border-black">
-        <div class="justify-center items-center flex">
+      <div class="grid grid-cols-5 z-50 w-full h-[45rem] rounded-xl shadow-2xl border border-solid border-black">
+        <div class="justify-center items-center flex bg-[#ffffff1e] backdrop-blur-[10px] col-span-3">
           <img src="../ICON/logo.png" alt="">
         </div>
-        <div class="bg-yellowPrimary justify-start items-center flex px-10 border border-solid border-black">
+        <div class="bg-yellowPrimary justify-start items-center flex px-10 border border-solid border-black col-span-2">
           <div class="flex flex-col">
             <h1 class="text-4xl font-bold mb-6">Login</h1>
             <form action="handleLogin.php" method="post">
