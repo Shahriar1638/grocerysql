@@ -44,6 +44,20 @@
             <a href="addProducts.php" class="text-xl font-semibold uppercase">Add items</a>
           </div>
         </div>
+        <div>
+          <?php
+            if(isset($_COOKIE['username'])) {
+                $username = $_COOKIE['username'];
+                echo 
+                "<div class='flex items-center'>
+                  <i class='fa-solid fa-user mr-2 text-2xl'></i>
+                  <h1 class='text-xl font-semibold uppercase'>$username</h1>
+                 </div>";
+            } else {
+                echo "No username cookie set";
+            }
+            ?>
+        </div>
       </nav>
     </header>
     <main>
