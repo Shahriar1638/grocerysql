@@ -12,7 +12,8 @@ if(isset($_POST['productid']) && isset($_POST['productstatus']) && isset($_POST[
             $result = mysqli_query($conn, $query);
             if($result && mysqli_num_rows($result) > 0){
                 $selleremail = mysqli_fetch_assoc($result)['selleremail'];
-                $query = "UPDATE sellers set numOfApprove = numOfApprove + 1 where selleremail = '$selleremail'";
+                echo $selleremail;
+                $query = "UPDATE sellers set numOfApproved = numOfApproved + 1 where email = '$selleremail'";
                 $result = mysqli_query($conn, $query);
                 if($result){
                     header("Location: pendingItems.php");
@@ -28,12 +29,13 @@ if(isset($_POST['productid']) && isset($_POST['productstatus']) && isset($_POST[
     }else if($action == 'reject'){
         $query = "select selleremail from products where productId = '$productid'";
         $result = mysqli_query($conn, $query);
-        if($result && mysqli_num_rows($result) > 0){
+        if($result){
             $selleremail = mysqli_fetch_assoc($result)['selleremail'];
+            echo $selleremail;
             $query = "DELETE FROM products WHERE productId = '$productid'";
             $result = mysqli_query($conn, $query);
             if($result){
-                $query = "UPDATE sellers set numOfReject = numOfReject + 1 where selleremail = '$selleremail'";
+                $query = "UPDATE sellers set numOfReject = numOfReject + 1 where email = '$selleremail'";
                 $result = mysqli_query($conn, $query);
                 if($result){
                     header("Location: pendingItems.php");

@@ -98,7 +98,7 @@
                                 <td><?php echo $productseller ?></td>
                                 <td><?php echo $productSellCount ?></td>
                                 <td><?php echo $productStatus ?></td>
-                                <td><button onclick="handleStatus('<?php echo $productid ?>','<?php echo $productStatus ?>','remove')">reject</button>||<button onclick="handleStatus('<?php echo $productid ?>','<?php echo $productStatus ?>','approve')">approve</button></td>
+                                <td><button onclick="handleStatus('<?php echo $productid ?>','<?php echo $productStatus ?>','reject')">reject</button>||<button onclick="handleStatus('<?php echo $productid ?>','<?php echo $productStatus ?>','approve')">approve</button></td>
                               </tr>
                     <?php
                           }
@@ -107,7 +107,7 @@
               </table>
             </div>
             <div class="hidden">
-              <form action="handleStatusPending" id='statusForm' method="post">
+              <form action="handleStatusPending.php" id='statusForm' method="post">
                 <input type="text" name="action">
                 <input type="text" name="productid">
                 <input type="text" name="productstatus">

@@ -30,7 +30,7 @@
           <h1 class="text-3xl font-bold ml-3">FreshBasket</h1>
         </div>  
         <?php
-            if(isset($_COOKIE['userID'])) {
+            if(isset($_COOKIE['username'])) {
                 $username = $_COOKIE['username'];
             } else {
                 echo "No username cookie set";
@@ -71,7 +71,7 @@
             $row = mysqli_fetch_assoc($result);
             $seller_count = $row['seller_count'];
             // change the code below after updating the disjoint table;
-            $query = "SELECT SUM(points) AS total_salary FROM users WHERE role = 'admin'";
+            $query = "SELECT SUM(salary) AS total_salary FROM admins";
             $result = mysqli_query($conn, $query);
             $row = mysqli_fetch_assoc($result);
             $total_salary = $row['total_salary'];
