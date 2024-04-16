@@ -37,7 +37,7 @@
           </div>
           <div class="flex items-center ml-5 hover:text-redSecondary">
             <i class="fa-solid fa-list mr-2"></i>
-            <a href="allProdutcs.php" class="text-xl font-semibold uppercase">Items</a>
+            <a href="allItems.php" class="text-xl font-semibold uppercase">Items</a>
           </div>
           <div class="flex items-center ml-5 hover:text-redSecondary">
             <i class="fa-solid fa-list-check mr-2"></i>

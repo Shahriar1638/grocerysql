@@ -38,10 +38,26 @@
             <i class="fa-solid fa-list mr-2"></i>
             <a href="allItems.php" class="text-xl font-semibold uppercase">Items</a>
           </div>
-          <div class="flex items-center ml-5 hover:text-redSecondary">
-            <i class="fa-solid fa-shopping-cart mr-2"></i>
-            <a href="Cart.php" class="text-xl font-semibold uppercase">Cart</a>
-          </div>
+          <?php
+            if(isset($_COOKIE['role'])) {
+                $role = $_COOKIE['role'];
+                if($role == 'customer') {
+                    echo 
+                    "<div class='flex items-center ml-5 hover:text-redSecondary'>
+                      <i class='fa-solid fa-shopping-cart mr-2'></i>
+                      <a href='Cart.php' class='text-xl font-semibold uppercase'>Cart</a>
+                    </div>";
+                } else if ($role == 'seller'){
+                    echo 
+                    "<div class='flex items-center ml-5 hover:text-redSecondary'>
+                      <i class='fa-solid fa-list-check mr-2'></i>
+                      <a href='addProducts.php' class='text-xl font-semibold uppercase'>Add items</a>
+                    </div>";
+                } else {
+                  header("Location: login.php");
+                }
+            }
+           ?>
         </div>
         <div>
           <?php

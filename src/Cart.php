@@ -38,11 +38,10 @@
             <i class="fa-solid fa-list mr-2"></i>
             <a href="allItems.php" class="text-xl font-semibold uppercase">Items</a>
           </div>
-          <div class="flex items-center ml-5 hover:text-redSecondary">
-            <i class="fa-solid fa-shopping-cart mr-2"></i>
-            <a class="text-xl font-semibold uppercase">Cart</a>
+          <div class='flex items-center ml-5 hover:text-redSecondary'>
+            <i class='fa-solid fa-shopping-cart mr-2'></i>
+            <a href='Cart.php' class='text-xl font-semibold uppercase'>Cart</a>
           </div>
-        </div>
         <div>
           <?php
             if(isset($_COOKIE['username'])) {

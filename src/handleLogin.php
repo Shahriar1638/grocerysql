@@ -14,6 +14,8 @@ if(isset($_POST['email']) && isset($_POST['password'])){
         setcookie('username', $username, time() + (86400 * 30), "/");
         setcookie('email', '', time() + (86400 * 30), "/");
         setcookie('email', $email, time() + (86400 * 30), "/");
+        setcookie('role', '', time() + (86400 * 30), "/");
+        setcookie('role', $role, time() + (86400 * 30), "/");
         // -----------
         if ($role == 'seller'){
             header("Location: sellerHome.php");
