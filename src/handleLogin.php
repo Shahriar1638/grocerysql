@@ -21,7 +21,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
             header("Location: sellerHome.php");
         }
         else if ($role == 'admin'){
-            header("Location: adminHome.php");
+            header("Location: publishedItems.php");
         }
         else if ($role == 'customer'){
             header("Location: customerHome.php");

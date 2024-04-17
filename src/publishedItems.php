@@ -60,6 +60,7 @@
               </div>
             </div>
           </div>
+          <!-- suchitra start -->
           <div class="col-span-5 bg-white rounded-tl-3xl h-screen pl-12 pt-12">
             <div>
               <h1 class="text-4xl font-bold uppercase text-center mb-8">Current published products</h1>
@@ -76,11 +77,9 @@
                   </thead>
                   <tbody>
                   <?php 
-                    require_once('DBconnect.php');
-                    $useremail = $_COOKIE['email'];
+                    require('DBconnect.php');
                     $query = "SELECT * FROM products where status = 'published'";
                     $result = mysqli_query($conn, $query);
-                    $totalCost = 0;
                     if (mysqli_num_rows($result) > 0){
                         while ($row = mysqli_fetch_assoc($result)){
                             $productname = $row['name'];
@@ -89,7 +88,7 @@
                             $productSellCount = $row['sellcount'];
                             ?>
                               <tr>
-                                <td><?php echo $productname ?></td>
+                                <td><?php echo $row['name'] ?></td>
                                 <td><?php echo $productprice ?></td>
                                 <td><?php echo $productseller ?></td>
                                 <td><?php echo $productSellCount ?></td>
@@ -101,6 +100,7 @@
               </table>
             </div>
           </div>
+          <!-- suchitra end -->
         </div>
       </section>
     </main>

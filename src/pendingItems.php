@@ -46,10 +46,10 @@
         <div class="grid grid-cols-6">
           <div class="mt-16">
             <div class="flex flex-col items-start">
-              <div class="flex items-center hover:text-redSecondary mb-6">
+              <!-- <div class="flex items-center hover:text-redSecondary mb-6">
                 <i class="fa-solid fa-chart-column mr-2 text-lg"></i>
                 <a href="adminHome.php" class="text-lg font-semibold uppercase">statistics</a>
-              </div>
+              </div> -->
               <div class="flex items-center hover:text-redSecondary mb-6">
                 <i class="fa-regular fa-clipboard mr-2 text-lg"></i>
                 <a href="publishedItems.php" class="text-lg font-semibold uppercase">Published Items</a>
@@ -71,7 +71,6 @@
                           <th class="uppercase">Product Name</th>
                           <th class="uppercase">Product Price</th>
                           <th class="uppercase">sellername</th>
-                          <th class="uppercase">total sold</th>
                           <th class="uppercase">status</th>
                           <th class="uppercase">Action</th>
                       </tr>
@@ -79,24 +78,20 @@
                   <tbody>
                   <?php 
                     require_once('DBconnect.php');
-                    $useremail = $_COOKIE['email'];
                     $query = "SELECT * FROM products where status = 'pending'";
                     $result = mysqli_query($conn, $query);
-                    $totalCost = 0;
                     if (mysqli_num_rows($result) > 0){
                         while ($row = mysqli_fetch_assoc($result)){
                             $productid = $row['productId'];
                             $productname = $row['name'];
                             $productprice = $row['price'];
                             $productseller = $row['selleremail'];
-                            $productSellCount = $row['sellcount'];
                             $productStatus = $row['status'];
                             ?>
                               <tr>
                                 <td><?php echo $productname ?></td>
                                 <td><?php echo $productprice ?></td>
                                 <td><?php echo $productseller ?></td>
-                                <td><?php echo $productSellCount ?></td>
                                 <td><?php echo $productStatus ?></td>
                                 <td><button onclick="handleStatus('<?php echo $productid ?>','<?php echo $productStatus ?>','reject')">reject</button>||<button onclick="handleStatus('<?php echo $productid ?>','<?php echo $productStatus ?>','approve')">approve</button></td>
                               </tr>

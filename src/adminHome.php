@@ -46,10 +46,10 @@
         <div class="grid grid-cols-6">
           <div class="mt-16">
             <div class="flex flex-col items-start">
-              <div class="flex items-center hover:text-redSecondary mb-6">
+              <!-- <div class="flex items-center hover:text-redSecondary mb-6">
                 <i class="fa-solid fa-chart-column mr-2 text-lg"></i>
                 <a href="adminHome.php" class="text-lg font-semibold uppercase">statistics</a>
-              </div>
+              </div> -->
               <div class="flex items-center hover:text-redSecondary mb-6">
                 <i class="fa-regular fa-clipboard mr-2 text-lg"></i>
                 <a href="publishedItems.php" class="text-lg font-semibold uppercase">Published Items</a>
@@ -60,29 +60,25 @@
               </div>
             </div>
           </div>
+          <!--  junks start -->
           <?php
-            require_once('DBconnect.php');
-            $query = "SELECT COUNT(*) AS customer_count FROM users WHERE role = 'customer'";
-            $result = mysqli_query($conn, $query);
-            $row = mysqli_fetch_assoc($result);
-            $customer_count = $row['customer_count'];
-            $query = "SELECT COUNT(*) AS seller_count FROM users WHERE role = 'seller'";
-            $result = mysqli_query($conn, $query);
-            $row = mysqli_fetch_assoc($result);
-            $seller_count = $row['seller_count'];
-            // change the code below after updating the disjoint table;
-            $query = "SELECT SUM(salary) AS total_salary FROM admins";
-            $result = mysqli_query($conn, $query);
-            $row = mysqli_fetch_assoc($result);
-            $total_salary = $row['total_salary'];
+            // require_once('DBconnect.php');
+            // $query = "SELECT COUNT(*) AS customer_count FROM users WHERE role = 'customer'";
+            // $result = mysqli_query($conn, $query);
+            // $row = mysqli_fetch_assoc($result);
+            // $customer_count = $row['customer_count'];
+            // $query = "SELECT COUNT(*) AS seller_count FROM users WHERE role = 'seller'";
+            // $result = mysqli_query($conn, $query);
+            // $row = mysqli_fetch_assoc($result);
+            // $seller_count = $row['seller_count'];
+            // // change the code below after updating the disjoint table;
+            // $query = "SELECT SUM(salary) AS total_salary FROM admins";
+            // $result = mysqli_query($conn, $query);
+            // $row = mysqli_fetch_assoc($result);
+            // $total_salary = $row['total_salary'];
           ?>
+          <!-- junks end -->
           <div class="col-span-5 bg-white rounded-tl-3xl h-screen pl-12 pt-12">
-            <div>
-              <h1>Total revenue <?php echo $total_salary ?></h1>
-              <h1>Current salary of admins <?php echo $total_salary ?></h1>
-              <h1>total customer <?php echo $customer_count ?></h1>
-              <h1>total sellers <?php echo $seller_count ?></h1>
-            </div>
           </div>
         </div>
       </section>
