@@ -80,9 +80,10 @@
             <h1 class="text-center text-7xl font-extrabold my-10">
                 Explore all the products
             </h1>
+            <!-- Mehraaj  -->
             <div class="grid grid-cols-3 gap-6">         
               <?php
-                require_once('DBconnect.php');
+                require('DBconnect.php');
                 $customeremail = $_COOKIE['email'];
                 $query = "SELECT * FROM products";
                 $result = mysqli_query($conn, $query);
@@ -146,6 +147,8 @@
                     document.getElementById('addForm').submit();
                   }
                 </script>
+
+            <!-- mehraaj end -->
             </div>
         </section>
     </main>

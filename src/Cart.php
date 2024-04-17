@@ -59,6 +59,7 @@
       </nav>
     </header>
     <main>
+      <!-- Mehraaj -->
       <section class="px-[15rem]">
         <h1 class="text-center text-7xl font-extrabold my-10">
             Confirm your order
