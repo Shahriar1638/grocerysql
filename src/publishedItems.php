@@ -47,10 +47,6 @@
           <div class="mt-16">
             <div class="flex flex-col items-start">
               <div class="flex items-center hover:text-redSecondary mb-6">
-                <i class="fa-solid fa-chart-column mr-2 text-lg"></i>
-                <a href="adminHome.php" class="text-lg font-semibold uppercase">statistics</a>
-              </div>
-              <div class="flex items-center hover:text-redSecondary mb-6">
                 <i class="fa-regular fa-clipboard mr-2 text-lg"></i>
                 <a href="publishedItems.php" class="text-lg font-semibold uppercase">Published Items</a>
               </div>
