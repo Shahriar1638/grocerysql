@@ -42,6 +42,7 @@
             <i class='fa-solid fa-shopping-cart mr-2'></i>
             <a href='Cart.php' class='text-xl font-semibold uppercase'>Cart</a>
           </div>
+        </div>
         <div>
           <?php
             if(isset($_COOKIE['username'])) {
@@ -105,7 +106,7 @@
                               <td><?php echo $productname; ?></td>
                               <td><?php echo $productprice; ?>$</td>
                               <td class="uppercase"><?php echo $productquantity .' '. $unit; ?></td>
-                              <td onclick="handleForm('<?php echo $useremail; ?>','<?php echo $productid; ?>')"><i class='fa-solid fa-trash hover:text-red-500 cursor-pointer'></i></td>
+                              <td onclick="handleRemoveFromCart('<?php echo $useremail; ?>','<?php echo $productid; ?>')"><i class='fa-solid fa-trash hover:text-red-500 cursor-pointer'></i></td>
                             </tr>
                   <?php
                         }
@@ -114,7 +115,14 @@
             </table>
         </div>
         <div class="my-20">
-            <h1 class="text-2xl font-semibold">Total Cost: $<?php echo $totalCost; ?></h1>
+            <div class="flex flex-row justify-between items-center">
+              <div>
+                <h1 class="text-2xl font-semibold">Total Cost: $<?php echo $totalCost; ?></h1>
+              </div>
+              <div>
+                <button onclick="handlePayment('<?php echo $useremail; ?>','<?php echo $totalCost; ?>')">Pay Now</button>
+              </div>
+            </div>
         </div>
         <div class="hidden">
             <form action="handleRemoveCart.php" method="post" id="addForm">
@@ -122,12 +130,21 @@
                 <input type="text" name="productid">
             </form>
         </div>
+        <div class="hidden">
+            <form action="handleRemoveCart.php" method="post" id="addForm">
+                <input type="text" name="customeremail">
+                <input type="text" name="totalcost">
+            </form>
+        </div>
         <script>
-            function handleForm(useremail, productid) {
+            function handlePayment(){
+
+            };
+            function handleRemoveFromCart(useremail, productid) {
             document.getElementById('addForm').elements['productid'].value = productid;
             document.getElementById('addForm').elements['customeremail'].value = useremail;
             document.getElementById('addForm').submit();
-            }
+            };
         </script>
         </section>
     </main>
