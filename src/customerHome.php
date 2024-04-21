@@ -32,7 +32,7 @@
         <div class="flex items-center">
           <div class="flex items-center hover:text-redSecondary">
             <i class="fa-solid fa-house fa-rotate-by mr-2"></i>
-            <a class="text-xl font-semibold uppercase">Home</a>
+            <a href="customerHome.php" class="text-xl font-semibold uppercase">Home</a>
           </div>
           <div class="flex items-center ml-5 hover:text-redSecondary">
             <i class="fa-solid fa-list mr-2"></i>
@@ -40,7 +40,7 @@
           </div>
           <div class="flex items-center ml-5 hover:text-redSecondary">
             <i class="fa-solid fa-shopping-cart mr-2"></i>
-            <a class="text-xl font-semibold uppercase">Cart</a>
+            <a href="Cart.php" class="text-xl font-semibold uppercase">Cart</a>
           </div>
         </div>
         <div>
@@ -73,7 +73,7 @@
           <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" space-between="30" slides-per-view="3">
           <?php
             require('DBconnect.php');
-            $query = "SELECT * FROM products ORDER BY sellcount DESC LIMIT 6";
+            $query = "SELECT * FROM products ORDER BY cartcount DESC LIMIT 6";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_array($result)) {
@@ -85,7 +85,6 @@
                     <div class='flex flex-row items-center'>
                       <p class='text-white mr-4 flex items-center gap-2'><img class='w-4 h-4' src='../ICON/categories.png'><?php echo $row['category']; ?></p>
                       <p class='text-white flex items-center gap-2'><i class='fa-solid fa-dollar-sign'></i><?php echo $row['price']; ?></p>
-                      
                     </div>
                   </div>
                 </div>
@@ -105,7 +104,7 @@
           <?php
             require_once('DBconnect.php');
             $customeremail = $_COOKIE['email'];
-            $query = "SELECT * FROM products ORDER BY publishdate DESC LIMIT 6";
+            $query = "SELECT * FROM products WHERE status='published' ORDER BY publishdate DESC LIMIT 6";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_array($result)) {

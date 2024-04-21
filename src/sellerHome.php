@@ -75,7 +75,7 @@
           <?php
             require_once('DBconnect.php');
             $customeremail = $_COOKIE['email'];
-            $query = "SELECT * FROM products ORDER BY sellcount DESC LIMIT 6";
+            $query = "SELECT * FROM products ORDER BY cartcount DESC LIMIT 6";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_array($result)) {
@@ -86,7 +86,7 @@
                     <h1 class='text-3xl font-bold text-white'><?php echo $row['name']; ?></h1>
                     <div class='flex flex-row items-center'>
                       <p class='text-white mr-4 flex items-center gap-2'><img class='w-4 h-4' src='../ICON/categories.png'><?php echo $row['category']; ?></p>
-                      <p class='text-white flex items-center gap-2'><?php echo $row['sellcount']; ?></p>
+                      <p class='text-white flex items-center gap-2'><?php echo $row['cartcount']; ?></p>
                     </div>
                   </div>
                 </div>

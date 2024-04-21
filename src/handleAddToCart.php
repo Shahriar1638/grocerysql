@@ -1,12 +1,13 @@
 <!-- Mehraaj -->
 <?php 
 require('DBconnect.php');
-if (isset($_POST['productname']) && isset($_POST['productprice']) && isset($_POST['customeremail']) && isset($_POST['productid']) && isset($_POST['productamount'])){
+if (isset($_POST['productname']) && isset($_POST['productprice']) && isset($_POST['customeremail']) && isset($_POST['productid']) && isset($_POST['productamount']) && isset($_POST['selleremail'])){
     $customeremail = $_POST['customeremail'];
     $productid = $_POST['productid'];
     $productName = $_POST['productname'];
     $productPrice = $_POST['productprice'];
     $productamount = $_POST['productamount'];
+    $selleremail = $_POST['selleremail'];
     $sql = "SELECT COUNT(*) AS count FROM carts WHERE customeremail = '$customeremail' AND productid = '$productid'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
@@ -23,7 +24,7 @@ if (isset($_POST['productname']) && isset($_POST['productprice']) && isset($_POS
             }
         // Else we add them to the cart
         } else {
-            $sql = "INSERT INTO carts (customeremail, productid, productname, price, productamount) VALUES ('$customeremail', '$productid', '$productName', '$productPrice', '$productamount')";
+            $sql = "INSERT INTO carts (customeremail, productid, productname, price, productamount, selleremail) VALUES ('$customeremail', '$productid', '$productName', '$productPrice', '$productamount', '$selleremail')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
                 header("Location: allItems.php");

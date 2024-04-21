@@ -89,6 +89,7 @@
                 $result = mysqli_query($conn, $query);
                 if (mysqli_num_rows($result) > 0) {
                   while ($row = mysqli_fetch_assoc($result)) {
+                    $selleremail = $row['selleremail'];
                     $productName = $row['name'];
                     $productPrice = $row['price'];
                     $productImage = $row['imgurl'];
@@ -108,9 +109,9 @@
                     <div class="dropdown dropdown-end">
                       <div tabindex="0" role="button" class="m-1"><i class='fa-solid fa-cart-plus text-4xl text-white hover:text-[#FFBF00] hover pointer'></i></div>
                       <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>','<?php echo $productAmmount[1] ?>')"><a><?php echo $productAmmount[1] . ' ' . $ammountType?></a></li>
-                        <li onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>','<?php echo $productAmmount[2] ?>')"><a><?php echo $productAmmount[2] . ' ' . $ammountType?></a></li>
-                        <li onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>','<?php echo $productAmmount[3] ?>')"><a><?php echo $productAmmount[3] . ' ' . $ammountType?></a></li>
+                        <li onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>','<?php echo $productAmmount[1] ?>','<?php echo $selleremail ?>')"><a><?php echo $productAmmount[1] . ' ' . $ammountType?></a></li>
+                        <li onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>','<?php echo $productAmmount[2] ?>','<?php echo $selleremail ?>')"><a><?php echo $productAmmount[2] . ' ' . $ammountType?></a></li>
+                        <li onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>','<?php echo $productAmmount[3] ?>','<?php echo $selleremail ?>')"><a><?php echo $productAmmount[3] . ' ' . $ammountType?></a></li>
                       </ul>
                     </div>
                   </div>
@@ -129,21 +130,23 @@
                 }
                 ?>
                 <div class="hidden">
-                  <form action="handleCart.php" method="post" id="addForm">
+                  <form action="handleAddToCart.php" method="post" id="addForm">
                     <input type="text" name="productname">
                     <input type="number" name="productprice">
                     <input type="text" name="customeremail">
                     <input type="text" name="productid">
                     <input type="number" name="productamount">
+                    <input type="text" name="selleremail">
                   </form>
                 </div>
                 <script>
-                  function handleForm(productName, productPrice, customeremail, productid, productAmmount) {
+                  function handleForm(productName, productPrice, customeremail, productid, productAmmount, selleremail) {
                     document.getElementById('addForm').elements['productname'].value = productName;
                     document.getElementById('addForm').elements['productprice'].value = productPrice;
                     document.getElementById('addForm').elements['customeremail'].value = customeremail;
                     document.getElementById('addForm').elements['productid'].value = productid;
                     document.getElementById('addForm').elements['productamount'].value = productAmmount;
+                    document.getElementById('addForm').elements['selleremail'].value = selleremail;
                     document.getElementById('addForm').submit();
                   }
                 </script>

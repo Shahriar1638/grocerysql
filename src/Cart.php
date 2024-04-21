@@ -88,7 +88,7 @@
                         $productname = $row['productname'];
                         $productprice = $row['price'];
                         $productquantity = $row['productamount'];
-                        $totalCost = ($productprice * $productquantity)+$totalCost;
+                        $totalCost = round(($productprice * $productquantity) + $totalCost, 2);
                         // checking the product amount type
                         $sql = "SELECT * FROM products WHERE productId = '$productid'";
                         $productResult = mysqli_query($conn, $sql);
@@ -140,32 +140,32 @@
             </div>
             <div class="flex items-center flex-row">
               <input class="rounded-md px-4 py-2 border border-solid border-gray-400 w-full mr-6" type="text" placeholder="Card Number">
-              <button onclick="handlePayment('<?php echo $useremail; ?>','<?php echo $totalCost; ?>')" class="text-white font-bold uppercase text-lg px-6 py-2 rounded-lg bg-redSecondary">paynow</button>
+              <button onclick="handlePayment('<?php echo $useremail; ?>','<?php echo $totalCost; ?>','')" class="text-white font-bold uppercase text-lg px-6 py-2 rounded-lg bg-redSecondary">paynow</button>
             </div>
           </div>
         </div>
         <div class="hidden">
-            <form action="handleRemoveCart.php" method="post" id="addForm">
+            <form action="handleRemoveCart.php" method="post" id="removecart">
                 <input type="text" name="customeremail">
                 <input type="text" name="productid">
             </form>
         </div>
         <div class="hidden">
-            <form action="handlePayment.php" method="post" id="addForm">
+            <form action="handlePayment.php" method="post" id="paymentform">
                 <input type="text" name="customeremail">
                 <input type="text" name="totalcost">
             </form>
         </div>
         <script>
             function handlePayment(useremail, totalcost) {
-                document.getElementById('addForm').elements['customeremail'].value = useremail;
-                document.getElementById('addForm').elements['totalcost'].value = totalcost;
-                document.getElementById('addForm').submit();
+                document.getElementById('paymentform').elements['customeremail'].value = useremail;
+                document.getElementById('paymentform').elements['totalcost'].value = totalcost;
+                document.getElementById('paymentform').submit();
             };
             function handleRemoveFromCart(useremail, productid) {
-            document.getElementById('addForm').elements['productid'].value = productid;
-            document.getElementById('addForm').elements['customeremail'].value = useremail;
-            document.getElementById('addForm').submit();
+            document.getElementById('removecart').elements['productid'].value = productid;
+            document.getElementById('removecart').elements['customeremail'].value = useremail;
+            document.getElementById('removecart').submit();
             };
         </script>
         </section>
