@@ -1,5 +1,5 @@
 <?php 
-require_once('DBconnect.php');
+require('DBconnect.php');
 if (isset($_POST['role']) && isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])){
     $role = $_POST['role'];
     $username = $_POST['username'];
@@ -7,8 +7,7 @@ if (isset($_POST['role']) && isset($_POST['username']) && isset($_POST['email'])
     $password = $_POST['password'];
     $sql = "INSERT INTO users (role, username, email, password) VALUES ('$role', '$username', '$email', '$password')";
     $result = mysqli_query($conn, $sql);
-    if (mysqli_affected_rows($conn)) {
-        echo "New record created successfully";
+    if ($result) {
         if ($role == 'customer') {
             $points = 0;
 
@@ -17,7 +16,7 @@ if (isset($_POST['role']) && isset($_POST['username']) && isset($_POST['email'])
             $tempresult = mysqli_query($conn, $tempsql);
             $row = mysqli_fetch_assoc($tempresult);
             $lastCustomerID = $row['customerID'];
-            $prefix = substr($lastCustomerID, 0, 3);
+            $prefix = substr($lastCustomerID, 0, 3); 
             $number = substr($lastCustomerID, 3);
             $number = (int)$number + 1;
             $number = str_pad($number, 3, "0", STR_PAD_LEFT);
@@ -33,6 +32,8 @@ if (isset($_POST['role']) && isset($_POST['username']) && isset($_POST['email'])
             }
         } else if ($role == 'seller') {
             $revenue = 0;
+            $numOfApproved = 0;
+            $numOfReject = 0;
 
             // checking the last row to generate new sellerID
             $tempsql = "SELECT * FROM sellers ORDER BY sellerID DESC LIMIT 1";
@@ -46,7 +47,7 @@ if (isset($_POST['role']) && isset($_POST['username']) && isset($_POST['email'])
             $newID = $prefix . $number;
 
             // continue with inserting new seller
-            $sql = "INSERT INTO sellers (sellerID,email, revenue) VALUES ('$newID','$email', '$revenue')";
+            $sql = "INSERT INTO sellers (sellerID,email, revenue, numOfApproved, numOfReject) VALUES ('$newID','$email', '$revenue', '$numOfApproved', '$numOfReject')";
             $result = mysqli_query($conn, $sql);
             if (mysqli_affected_rows($conn)) {
                 header("Location: login.php");

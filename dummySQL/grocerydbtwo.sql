@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 08:16 AM
+-- Generation Time: Apr 21, 2024 at 06:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -51,34 +51,18 @@ CREATE TABLE `carts` (
   `customeremail` varchar(60) NOT NULL,
   `productname` varchar(60) NOT NULL,
   `productamount` decimal(7,2) DEFAULT NULL,
-  `price` decimal(10,2) NOT NULL
+  `price` decimal(10,2) NOT NULL,
+  `selleremail` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`productId`, `customeremail`, `productname`, `productamount`, `price`) VALUES
-(1, 'cus4@abc.com', 'Fresh Tomato', 3.00, 2.99),
-(1, 'jane@example.com', 'Fresh Tomato', 2.00, 2.99),
-(1, 'john@example.com', 'Fresh Tomato', 9.50, 2.99),
-(2, 'cus4@abc.com', 'Crispy Lettuce', 2.50, 1.49),
-(2, 'duck@duck.com', 'Crispy Lettuce', 0.50, 1.49),
-(2, 'jane@example.com', 'Crispy Lettuce', 1.00, 1.49),
-(2, 'john@example.com', 'Crispy Lettuce', 1.50, 1.49),
-(3, 'duck@duck.com', 'Organic Potato', 5.00, 3.49),
-(3, 'jane@example.com', 'Organic Potato', 0.50, 3.49),
-(3, 'john@example.com', 'Organic Potato', 1.00, 3.49),
-(3, 'seller4@abc.com', 'Organic Potato', 1.00, 3.49),
-(13, 'john@example.com', 'Juicy Apple', 1.00, 1.99),
-(14, 'jane@example.com', 'Ripe Banana', 12.00, 0.99),
-(15, 'duck@duck.com', 'Sweet Orange', 4.00, 2.49),
-(15, 'jane@example.com', 'Sweet Orange', 10.00, 2.49),
-(16, 'john@example.com', 'Fresh Carrot', 2.00, 1.49),
-(17, 'john@example.com', 'Green Broccoli', 1.00, 2.99),
-(18, 'duck@duck.com', 'Red Bell Pepper', 1.00, 3.29),
-(18, 'seller4@abc.com', 'Red Bell Pepper', 1.00, 3.29),
-(20, 'jane@example.com', 'Chocolate Chip Cookies', 0.50, 3.49);
+INSERT INTO `carts` (`productId`, `customeremail`, `productname`, `productamount`, `price`, `selleremail`) VALUES
+(1, 'ducks@ducks', 'Fresh Tomato', 5.00, 2.99, 'seller1@example.com'),
+(2, 'ducks@ducks', 'Crispy Lettuce', 1.00, 1.49, 'seller2@example.com'),
+(20, 'ducks@ducks', 'Chocolate Chip Cookies', 1.00, 3.49, 'seller2@example.com');
 
 -- --------------------------------------------------------
 
@@ -97,12 +81,13 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customerID`, `email`, `points`) VALUES
-('CUS001', 'jane@example.com', 100),
+('CUS001', 'jane@example.com', 112),
 ('CUS002', 'john@example.com', 150),
 ('CUS003', 'Meow@Meow.com', 0),
 ('CUS004', 'duck@duck.com', 0),
 ('CUS005', 'duck@cus.com', 0),
-('CUS006', 'cus4@abc.com', 0);
+('CUS006', 'cus4@abc.com', 0),
+('CUS007', 'ducks@ducks2', 0);
 
 -- --------------------------------------------------------
 
@@ -118,7 +103,7 @@ CREATE TABLE `products` (
   `ammount` text DEFAULT NULL,
   `publishdate` date NOT NULL,
   `selleremail` varchar(60) DEFAULT NULL,
-  `sellcount` int(11) DEFAULT 0,
+  `cartcount` int(11) DEFAULT NULL,
   `category` varchar(50) NOT NULL,
   `status` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -127,21 +112,18 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`productId`, `name`, `imgurl`, `price`, `ammount`, `publishdate`, `selleremail`, `sellcount`, `category`, `status`) VALUES
-(1, 'Fresh Tomato', 'https://i.ibb.co/C1LWMsR/tomato.jpg', 2.99, 'wk,0.5,1,2', '2024-03-29', 'seller1@example.com', 50, 'Vegetables', 'published'),
+INSERT INTO `products` (`productId`, `name`, `imgurl`, `price`, `ammount`, `publishdate`, `selleremail`, `cartcount`, `category`, `status`) VALUES
+(1, 'Fresh Tomato', 'https://i.ibb.co/C1LWMsR/tomato.jpg', 2.99, 'wk,0.5,1,2', '2024-03-29', 'seller1@example.com', 51, 'Vegetables', 'published'),
 (2, 'Crispy Lettuce', 'https://i.ibb.co/MNGLvtk/lettuce.jpg', 1.49, 'wk,0.5,1,2', '2024-03-28', 'seller2@example.com', 8, 'Vegetables', 'published'),
 (3, 'Organic Potato', 'https://i.ibb.co/vqmQk8Z/potato.jpg', 3.49, 'wk,0.5,1,2', '2024-03-27', 'seller1@example.com', 3, 'Vegetables', 'published'),
-(13, 'Juicy Apple', 'https://i.ibb.co/Nrs4B1r/apple.jpg', 1.99, 'p,4,10,12', '2024-03-25', 'seller2@example.com', 12, 'Fruits', 'published'),
+(13, 'Juicy Apple', 'https://i.ibb.co/Nrs4B1r/apple.jpg', 1.99, 'p,4,10,12', '2024-03-25', 'seller2@example.com', 13, 'Fruits', 'published'),
 (14, 'Ripe Banana', 'https://i.ibb.co/FbJQ2fB/banana.jpg', 0.99, 'p,4,10,12', '2024-03-24', 'seller2@example.com', 15, 'Fruits', 'published'),
-(15, 'Sweet Orange', 'https://i.ibb.co/bdck7T5/orange.jpg', 2.49, 'p,4,10,12', '2024-03-23', 'seller1@example.com', 10, 'Fruits', 'published'),
-(16, 'Fresh Carrot', 'https://i.ibb.co/BzC19cb/carrot.jpg', 1.49, 'wk,0.5,1,2', '2024-03-22', 'seller2@example.com', 20, 'Vegetables', 'published'),
+(15, 'Sweet Orange', 'https://i.ibb.co/bdck7T5/orange.jpg', 2.49, 'p,4,10,12', '2024-03-23', 'seller1@example.com', 11, 'Fruits', 'published'),
+(16, 'Fresh Carrot', 'https://i.ibb.co/BzC19cb/carrot.jpg', 1.49, 'wk,0.5,1,2', '2024-03-22', 'seller2@example.com', 21, 'Vegetables', 'published'),
 (17, 'Green Broccoli', 'https://i.ibb.co/N71pydr/broccoli.jpg', 2.99, 'wk,0.5,1,2', '2024-03-21', 'seller1@example.com', 18, 'Vegetables', 'pending'),
-(18, 'Red Bell Pepper', 'https://i.ibb.co/W6MQ5j2/pepper.jpg', 3.29, 'wk,0.5,1,2', '2024-03-20', 'seller1@example.com', 25, 'Vegetables', 'published'),
+(18, 'Red Bell Pepper', 'https://i.ibb.co/W6MQ5j2/pepper.jpg', 3.29, 'wk,0.5,1,2', '2024-03-20', 'seller1@example.com', 26, 'Vegetables', 'published'),
 (19, 'Whole Wheat Bread', 'https://i.ibb.co/pxxMTsK/bread.jpg', 4.99, 'wp,0.5,1,1.5', '2024-03-19', 'seller2@example.com', 8, 'Bakery', 'published'),
-(20, 'Chocolate Chip Cookies', 'https://i.ibb.co/Nmrv15C/cookies.jpg', 3.49, 'wp,0.5,1,1.5', '2024-03-18', 'seller2@example.com', 30, 'Bakery', 'published'),
-(23, 'catto', 'https://i.ibb.co/wynG8kg/strafield.jpg', 20.45, 'wp,2,3,4', '2024-04-15', 'seller1@example.com', 0, 'Fruits and Veggies', 'published'),
-(24, 'catto', 'https://i.ibb.co/qrWs7vK/technology.jpg', 4152.22, 'p,2,3,4', '2024-04-16', 'seller1@example.com', 0, 'Fruits and Veggies', 'published'),
-(25, 'catto', 'https://i.ibb.co/qrWs7vK/technology.jpg', 54115.20, 'wp,2,3,4', '2024-04-17', 'seller1@example.com', 0, 'Fruits and Veggies', 'published');
+(20, 'Chocolate Chip Cookies', 'https://i.ibb.co/Nmrv15C/cookies.jpg', 3.49, 'wp,0.5,1,1.5', '2024-03-18', 'seller2@example.com', 31, 'Bakery', 'published');
 
 -- --------------------------------------------------------
 
@@ -162,8 +144,8 @@ CREATE TABLE `sellers` (
 --
 
 INSERT INTO `sellers` (`sellerID`, `email`, `revenue`, `numOfApproved`, `numOfReject`) VALUES
-('SLR001', 'seller1@example.com', 10000.00, 4, 1),
-('SLR002', 'seller2@example.com', 15000.00, 3, 0),
+('SLR001', 'seller1@example.com', 10064.47, 4, 1),
+('SLR002', 'seller2@example.com', 15068.90, 3, 0),
 ('SLR003', 'duck@meow.com', 0.00, 0, 0),
 ('SLR004', 'duck@seller.com', 0.00, 0, 0),
 ('SLR005', 'catto@seller.com', 0.00, 0, 0),
@@ -194,6 +176,8 @@ INSERT INTO `users` (`role`, `username`, `email`, `password`) VALUES
 ('customer', 'duck', 'duck@duck.com', 'lol'),
 ('seller', 'sdsdsd', 'duck@meow.com', 'sdsda'),
 ('seller', 'duck', 'duck@seller.com', 'lol'),
+('customer', 'duck', 'ducks@ducks', 'aaa'),
+('customer', 'duck', 'ducks@ducks2', 'aaa'),
 ('seller', 'nuts', 'gg@ez.com', 'nuts'),
 ('customer', 'jane_doe', 'jane@example.com', 'customerpass'),
 ('customer', 'john_doe', 'john@example.com', 'customerpass'),

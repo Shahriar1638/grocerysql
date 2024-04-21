@@ -5,7 +5,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
     $p = $_POST['password'];
     $sql = "SELECT * FROM users WHERE email = '$e' AND password = '$p'";
     $result = mysqli_query($conn, $sql);
-    if(mysqli_num_rows($result) !=0 ){
+    if($result){
         $row = mysqli_fetch_assoc($result);
         $role = $row['role'];
         $username = $row['username']; 
