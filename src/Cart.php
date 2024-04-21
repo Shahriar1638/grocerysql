@@ -102,12 +102,12 @@
                           $unit= 'Pieces';
                         }
                         ?>
-                            <tr>
-                              <td><?php echo $productname; ?></td>
-                              <td><?php echo $productprice; ?>$</td>
-                              <td class="uppercase"><?php echo $productquantity .' '. $unit; ?></td>
-                              <td onclick="handleRemoveFromCart('<?php echo $useremail; ?>','<?php echo $productid; ?>')"><i class='fa-solid fa-trash hover:text-red-500 cursor-pointer'></i></td>
-                            </tr>
+                          <tr>
+                            <td><?php echo $productname; ?></td>
+                            <td><?php echo $productprice; ?>$</td>
+                            <td class="uppercase"><?php echo $productquantity .' '. $unit; ?></td>
+                            <td onclick="handleRemoveFromCart('<?php echo $useremail; ?>','<?php echo $productid; ?>')"><i class='fa-solid fa-trash hover:text-red-500 cursor-pointer'></i></td>
+                          </tr>
                   <?php
                         }
                   }?>
@@ -115,14 +115,34 @@
             </table>
         </div>
         <div class="my-20">
-            <div class="flex flex-row justify-between items-center">
+          <div>
+            <h1 class="text-2xl font-semibold">Total Cost: $<?php echo $totalCost; ?></h1>
+          </div>
+        </div>
+        <div class="mb-20 border-2 border-solid border-black rounded-xl">
+          <div class="px-12 py-6">
+            <h1 class="text-3xl text-center font-semibold textcenter mb-8">Payment Method</h1>
+            <div class="flex flex-row justify-between items-center mb-10">
               <div>
-                <h1 class="text-2xl font-semibold">Total Cost: $<?php echo $totalCost; ?></h1>
+                <h1 class="text-2xl font-semibold mb-8"><?php echo $useremail; ?></h1>
+                <input class="rounded-md px-4 py-2 border border-solid border-gray-400" type="text" placeholder="Set Expiry">
               </div>
               <div>
-                <button onclick="handlePayment('<?php echo $useremail; ?>','<?php echo $totalCost; ?>')">Pay Now</button>
+                <?php
+                  $today = date("d-m-y");
+                ?>
+                <div class="text-2xl font-semibold rounded-lg px-4 py-2 border border-solid border-black">Date: <?php echo $today; ?></div>
+              </div>
+              <div>
+                <h1 class="text-2xl font-semibold mb-8">Total Cost:<i class='fa-solid fa-dollar-sign'></i><?php echo $totalCost; ?></h1>
+                <input class="rounded-md px-4 py-2 border border-solid border-gray-400" type="text" placeholder="set cvc">
               </div>
             </div>
+            <div class="flex items-center flex-row">
+              <input class="rounded-md px-4 py-2 border border-solid border-gray-400 w-full mr-6" type="text" placeholder="Card Number">
+              <button onclick="handlePayment('<?php echo $useremail; ?>','<?php echo $totalCost; ?>')" class="text-white font-bold uppercase text-lg px-6 py-2 rounded-lg bg-redSecondary">paynow</button>
+            </div>
+          </div>
         </div>
         <div class="hidden">
             <form action="handleRemoveCart.php" method="post" id="addForm">
@@ -131,14 +151,16 @@
             </form>
         </div>
         <div class="hidden">
-            <form action="handleRemoveCart.php" method="post" id="addForm">
+            <form action="handlePayment.php" method="post" id="addForm">
                 <input type="text" name="customeremail">
                 <input type="text" name="totalcost">
             </form>
         </div>
         <script>
-            function handlePayment(){
-
+            function handlePayment(useremail, totalcost) {
+                document.getElementById('addForm').elements['customeremail'].value = useremail;
+                document.getElementById('addForm').elements['totalcost'].value = totalcost;
+                document.getElementById('addForm').submit();
             };
             function handleRemoveFromCart(useremail, productid) {
             document.getElementById('addForm').elements['productid'].value = productid;

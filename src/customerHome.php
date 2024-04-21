@@ -112,15 +112,11 @@
             ?>
               <swiper-slide>
                 <div class='w-72 h-96 rounded-lg relative' style='background-image: linear-gradient(to top,rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)),url(<?php echo $row['imgurl']; ?>); background-size: cover; background-repeat: no-repeat;'>
-                  <div class='absolute top-4 right-6'>
-                    <i class='fa-solid fa-cart-plus text-4xl text-white hover:text-[#FFBF00] hover pointer'></i>
-                  </div>
                   <div class='flex flex-col justify-start absolute bottom-4 left-6'>
                     <h1 class='text-3xl font-bold text-white'><?php echo $row['name']; ?></h1>
                     <div class='flex flex-row items-center'>
                       <p class='text-white mr-4 flex items-center gap-2'><img class='w-4 h-4' src='../ICON/categories.png'><?php echo $row['category']; ?></p>
                       <p class='text-white flex items-center gap-2'><i class='fa-solid fa-dollar-sign'></i><?php echo $row['price']; ?></p>
-                      
                     </div>
                   </div>
                 </div>
