@@ -43,7 +43,7 @@ if (isset($_POST['totalcost']) && isset($_POST['customeremail'])){
     if ($result){
 
         // adding points for customer
-        $query = "UPDATE customers SET points = points + $points WHERE email = '$customeremail'";
+        $query = "UPDATE customers SET points = points + $points - 100 WHERE email = '$customeremail'";
         $result = mysqli_query($conn, $query);
         if ($result){
             header("Location: customerHome.php");

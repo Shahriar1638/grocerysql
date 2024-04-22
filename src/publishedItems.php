@@ -81,7 +81,7 @@
                             $productname = $row['name'];
                             $productprice = $row['price'];
                             $productseller = $row['selleremail'];
-                            $productSellCount = $row['sellcount'];
+                            $productSellCount = $row['cartcount'];
                             ?>
                               <tr>
                                 <td><?php echo $row['name'] ?></td>

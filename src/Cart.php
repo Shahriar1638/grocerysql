@@ -115,8 +115,26 @@
             </table>
         </div>
         <div class="my-20">
+          <?php
+          require_once('DBconnect.php');
+          $useremail = $_COOKIE['email'];
+          $query = "SELECT * FROM customers WHERE email = '$useremail'";
+          $result = mysqli_query($conn, $query);
+          if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $points = $row['points'];
+            if ($points >= 100) {
+              $discount = 0.10;
+              $finalPrice = $totalCost - ($totalCost * $discount);
+            } else {
+              $discount = 0;
+              $finalPrice = $totalCost;
+            }}
+          ?>
           <div>
             <h1 class="text-2xl font-semibold">Total Cost: $<?php echo $totalCost; ?></h1>
+            <h1 class="text-2xl font-semibold">Discount: $<?php echo ($totalCost * $discount); ?></h1>
+            <h1 class="text-2xl font-semibold">Total payment: $<?php echo $finalPrice; ?></h1>
           </div>
         </div>
         <div class="mb-20 border-2 border-solid border-black rounded-xl">
@@ -134,13 +152,23 @@
                 <div class="text-2xl font-semibold rounded-lg px-4 py-2 border border-solid border-black">Date: <?php echo $today; ?></div>
               </div>
               <div>
-                <h1 class="text-2xl font-semibold mb-8">Total Cost:<i class='fa-solid fa-dollar-sign'></i><?php echo $totalCost; ?></h1>
+                <h1 class="text-2xl font-semibold mb-8">Total Cost:<i class='fa-solid fa-dollar-sign'></i><?php echo $finalPrice; ?></h1>
                 <input class="rounded-md px-4 py-2 border border-solid border-gray-400" type="text" placeholder="set cvc">
               </div>
             </div>
             <div class="flex items-center flex-row">
               <input class="rounded-md px-4 py-2 border border-solid border-gray-400 w-full mr-6" type="text" placeholder="Card Number">
-              <button onclick="handlePayment('<?php echo $useremail; ?>','<?php echo $totalCost; ?>','')" class="text-white font-bold uppercase text-lg px-6 py-2 rounded-lg bg-redSecondary">paynow</button>
+              <?php 
+              if ($totalCost == $finalPrice) {
+                ?>
+                <button onclick="handlePayment('<?php echo $useremail; ?>','<?php echo $finalPrice; ?>')" class="text-white font-bold uppercase text-lg px-6 py-2 rounded-lg bg-redSecondary">pay now</button>
+              <?php
+              } else {
+                ?>
+                <button onclick="handlePaymentWithPoints('<?php echo $useremail; ?>','<?php echo $finalPrice; ?>')" class="text-white font-bold uppercase text-lg px-6 py-2 rounded-lg bg-redSecondary">pay now</button>
+              <?php
+              }
+             ?>
             </div>
           </div>
         </div>
@@ -156,11 +184,22 @@
                 <input type="text" name="totalcost">
             </form>
         </div>
+        <div class="hidden">
+            <form action="handlePaymentWithPoints.php" method="post" id="paymentform2">
+                <input type="text" name="customeremail">
+                <input type="text" name="totalcost">
+            </form>
+        </div>
         <script>
             function handlePayment(useremail, totalcost) {
                 document.getElementById('paymentform').elements['customeremail'].value = useremail;
                 document.getElementById('paymentform').elements['totalcost'].value = totalcost;
                 document.getElementById('paymentform').submit();
+            };
+            function handlePaymentWithPoints(useremail, totalcost) {
+                document.getElementById('paymentform2').elements['customeremail'].value = useremail;
+                document.getElementById('paymentform2').elements['totalcost'].value = totalcost;
+                document.getElementById('paymentform2').submit();
             };
             function handleRemoveFromCart(useremail, productid) {
             document.getElementById('removecart').elements['productid'].value = productid;
