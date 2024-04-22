@@ -106,7 +106,7 @@
           <?php
             require_once('DBconnect.php');
             $customeremail = $_COOKIE['email'];
-            $query = "SELECT * FROM products ORDER BY publishdate DESC LIMIT 6";
+            $query = "SELECT * FROM products WHERE status='published' ORDER BY publishdate DESC LIMIT 6";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_array($result)) {

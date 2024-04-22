@@ -85,7 +85,7 @@
               <?php
                 require('DBconnect.php');
                 $customeremail = $_COOKIE['email'];
-                $query = "SELECT * FROM products";
+                $query = "SELECT * FROM products WHERE status = 'published'";
                 $result = mysqli_query($conn, $query);
                 if (mysqli_num_rows($result) > 0) {
                   while ($row = mysqli_fetch_assoc($result)) {
@@ -109,7 +109,9 @@
                     <div class="dropdown dropdown-end">
                       <div tabindex="0" role="button" class="m-1"><i class='fa-solid fa-cart-plus text-4xl text-white hover:text-[#FFBF00] hover pointer'></i></div>
                       <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>','<?php echo $productAmmount[1] ?>','<?php echo $selleremail ?>')"><a><?php echo $productAmmount[1] . ' ' . $ammountType?></a></li>
+                        <li onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>','<?php echo $productAmmount[1] ?>','<?php echo $selleremail ?>')">
+                          <a><?php echo $productAmmount[1] . ' ' . $ammountType?></a>
+                        </li>
                         <li onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>','<?php echo $productAmmount[2] ?>','<?php echo $selleremail ?>')"><a><?php echo $productAmmount[2] . ' ' . $ammountType?></a></li>
                         <li onclick="handleForm('<?php echo $productName ?>', '<?php echo $productPrice ?>','<?php echo $customeremail ?>','<?php echo $productid ?>','<?php echo $productAmmount[3] ?>','<?php echo $selleremail ?>')"><a><?php echo $productAmmount[3] . ' ' . $ammountType?></a></li>
                       </ul>
