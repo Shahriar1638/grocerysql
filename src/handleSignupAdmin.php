@@ -14,12 +14,12 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
         $tempsql = "SELECT * FROM admins ORDER BY adminID DESC LIMIT 1";
         $tempresult = mysqli_query($conn, $tempsql);
         $row = mysqli_fetch_assoc($tempresult);
-        $lastCustomerID = $row['adminID'];
-        $prefix = substr($lastCustomerID, 0, 3); 
-        $number = substr($lastCustomerID, 3);
+        $lastAdminID = $row['adminID']; // largest Id in the table
+        $prefix = substr($lastAdminID, 0, 3); 
+        $number = substr($lastAdminID, 3);
         $number = (int)$number + 1;
-        $number = str_pad($number, 3, "0", STR_PAD_LEFT);
-        $newID = $prefix . $number;
+        $newsuffix = "00" . $number;
+        $newID = $prefix . $newsuffix;
 
         // continue with inserting new admin
         $query = "INSERT INTO admins (adminID, email, salary) VALUES ('$newID','$email', '$salary')";

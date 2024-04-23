@@ -19,8 +19,8 @@ if (isset($_POST['role']) && isset($_POST['username']) && isset($_POST['email'])
             $prefix = substr($lastCustomerID, 0, 3); 
             $number = substr($lastCustomerID, 3);
             $number = (int)$number + 1;
-            $number = str_pad($number, 3, "0", STR_PAD_LEFT);
-            $newID = $prefix . $number;
+            $newsuffix = "00" . $number;
+            $newID = $prefix . $newsuffix;
 
             // continue with inserting new customer
             $sql = "INSERT INTO customers (customerID, email, points) VALUES ('$newID','$email', '$points')";
@@ -43,8 +43,8 @@ if (isset($_POST['role']) && isset($_POST['username']) && isset($_POST['email'])
             $prefix = substr($lastSellerID, 0, 3);
             $number = substr($lastSellerID, 3);
             $number = (int)$number + 1;
-            $number = str_pad($number, 3, "0", STR_PAD_LEFT);
-            $newID = $prefix . $number;
+            $newsuffix = "00" . $number;
+            $newID = $prefix . $newsuffix;
 
             // continue with inserting new seller
             $sql = "INSERT INTO sellers (sellerID,email, revenue, numOfApproved, numOfReject) VALUES ('$newID','$email', '$revenue', '$numOfApproved', '$numOfReject')";
