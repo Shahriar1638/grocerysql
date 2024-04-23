@@ -60,7 +60,7 @@
       </nav>
     </header>
     <main>
-      <!-- Mehraaj -->
+      <!-- Mehraj start -->
       <section class="px-[15rem]">
         <h1 class="text-center text-7xl font-extrabold my-10">
             Confirm your order
@@ -114,6 +114,7 @@
                 </tbody>
             </table>
         </div>
+        <!-- mehraj end -->
         <div class="my-20">
           <?php
           require_once('DBconnect.php');

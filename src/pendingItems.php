@@ -46,17 +46,17 @@
         <div class="grid grid-cols-6">
           <div class="mt-16">
             <div class="flex flex-col items-start">
-              <!-- <div class="flex items-center hover:text-redSecondary mb-6">
-                <i class="fa-solid fa-chart-column mr-2 text-lg"></i>
-                <a href="adminHome.php" class="text-lg font-semibold uppercase">statistics</a>
-              </div> -->
               <div class="flex items-center hover:text-redSecondary mb-6">
                 <i class="fa-regular fa-clipboard mr-2 text-lg"></i>
                 <a href="publishedItems.php" class="text-lg font-semibold uppercase">Published Items</a>
               </div>
-              <div class="flex items-center hover:text-redSecondary">
+              <div class="flex items-center hover:text-redSecondary mb-6 text-redSecondary">
                 <i class="fa-solid fa-hourglass-end mr-2"></i>
                 <a href='pendingItems.php' class="text-lg font-semibold uppercase">Pending Items</a>
+              </div>
+              <div class="flex items-center hover:text-redSecondary">
+                <i class="fa-regular fa-address-card mr-2"></i>
+                <a href='adminRegister.php' class="text-lg font-semibold uppercase">Register a admin</a>
               </div>
             </div>
           </div>

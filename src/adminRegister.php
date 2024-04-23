@@ -46,39 +46,32 @@
         <div class="grid grid-cols-6">
           <div class="mt-16">
             <div class="flex flex-col items-start">
-              <!-- <div class="flex items-center hover:text-redSecondary mb-6">
-                <i class="fa-solid fa-chart-column mr-2 text-lg"></i>
-                <a href="adminHome.php" class="text-lg font-semibold uppercase">statistics</a>
-              </div> -->
               <div class="flex items-center hover:text-redSecondary mb-6">
                 <i class="fa-regular fa-clipboard mr-2 text-lg"></i>
                 <a href="publishedItems.php" class="text-lg font-semibold uppercase">Published Items</a>
               </div>
-              <div class="flex items-center hover:text-redSecondary">
+              <div class="flex items-center hover:text-redSecondary mb-6">
                 <i class="fa-solid fa-hourglass-end mr-2"></i>
                 <a href='pendingItems.php' class="text-lg font-semibold uppercase">Pending Items</a>
               </div>
+              <div class="flex items-center hover:text-redSecondary text-redSecondary">
+                <i class="fa-regular fa-address-card mr-2"></i>
+                <a href='adminRegister.php' class="text-lg font-semibold uppercase">Register a admin</a>
+              </div>
             </div>
           </div>
-          <!--  junks start -->
-          <?php
-            // require_once('DBconnect.php');
-            // $query = "SELECT COUNT(*) AS customer_count FROM users WHERE role = 'customer'";
-            // $result = mysqli_query($conn, $query);
-            // $row = mysqli_fetch_assoc($result);
-            // $customer_count = $row['customer_count'];
-            // $query = "SELECT COUNT(*) AS seller_count FROM users WHERE role = 'seller'";
-            // $result = mysqli_query($conn, $query);
-            // $row = mysqli_fetch_assoc($result);
-            // $seller_count = $row['seller_count'];
-            // // change the code below after updating the disjoint table;
-            // $query = "SELECT SUM(salary) AS total_salary FROM admins";
-            // $result = mysqli_query($conn, $query);
-            // $row = mysqli_fetch_assoc($result);
-            // $total_salary = $row['total_salary'];
-          ?>
-          <!-- junks end -->
           <div class="col-span-5 bg-white rounded-tl-3xl h-screen pl-12 pt-12">
+            <div class="flex flex-col">
+              <h1 class="text-4xl font-bold mb-6 uppercase">Register new admin informations</h1>
+              <form action="handleSignupAdmin.php" method="post">
+                <div class="flex flex-col space-y-6 mb-4">
+                  <input class="px-6 py-2 rounded-md border border-solid border-gray-400 w-96" type="text" name="username" placeholder="Enter admin username......" required>
+                  <input class="px-6 py-2 rounded-md border border-solid border-gray-400 w-96" type="email" name="email" placeholder="Enter admin email......" required>
+                  <input class="px-6 py-2 rounded-md border border-solid border-gray-400 w-96" type="password" name="password" placeholder="set admin userpassword......" required>
+                </div>
+                <input type="submit" value="Sign up" class="px-6 py-2 bg-greenSecondary font-bold uppercase rounded-md text-white cursor-pointer transition duration-300 ease-in">
+              </form>
+            </div>
           </div>
         </div>
       </section>
